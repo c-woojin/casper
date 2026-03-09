@@ -109,7 +109,7 @@ def fetch_cars(area_code: str, local_area_code: str) -> list:
             break
 
         page += 1
-        time.sleep(random.uniform(1, 2))
+        time.sleep(random.uniform(0.5, 1))
 
     return all_cars
 
@@ -137,8 +137,7 @@ def main():
             result[name] = []
 
         if i < len(REGIONS):
-            delay = random.uniform(2, 4)
-            time.sleep(delay)
+            time.sleep(random.uniform(0.5, 1))
 
     with open("result.json", "w", encoding="utf-8") as f:
         json.dump(result, f, ensure_ascii=False, indent=2)
