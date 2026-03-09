@@ -137,7 +137,7 @@ def main():
             result[name] = []
 
         if i < len(REGIONS):
-            delay = random.uniform(5, 8)
+            delay = random.uniform(2, 4)
             time.sleep(delay)
 
     with open("result.json", "w", encoding="utf-8") as f:
