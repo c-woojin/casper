@@ -2,8 +2,11 @@ name: Casper Scraper
 
 on:
   schedule:
-    - cron: "0,15,30,45 * * * *"
+    - cron: "3,18,33,48 * * * *"
   workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   scrape:
