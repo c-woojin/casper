@@ -1,7 +1,7 @@
 import json
 import os
 import random
-
+import subprocess
 import time
 
 import requests
@@ -67,6 +67,16 @@ REGIONS = [
 ]
 
 
+def notify_mac(title: str, message: str):
+    try:
+        subprocess.run([
+            "osascript", "-e",
+            f'display notification "{message}" with title "{title}" sound name "default"',
+        ])
+    except Exception as e:
+        print(f"  macOS 알림 실패: {e}")
+
+
 def notify_slack(message: str):
     webhook_url = os.environ.get("SLACK_WEBHOOK_URL")
     if not webhook_url:
@@ -130,6 +140,7 @@ def main():
 
             if count > 0:
                 notify_slack(f":car: *캐스퍼 차량 발견!* {name}: {count}대 배송 가능")
+                notify_mac("캐스퍼 차량 발견!", f"{name}: {count}대 배송 가능")
 
         except Exception as e:
             print(f"[{i:2d}/{len(REGIONS)}] {name}: 실패 - {e}")
